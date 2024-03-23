@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "start:prod": "npx drizzle-kit push:pg && npm run start",
     "lint": "next lint"
   },
   "dependencies": {
