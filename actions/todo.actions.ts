@@ -61,7 +61,6 @@ export const toggleTodo = async (id: string, done: boolean) => {
       done: done,
     })
     .where(eq(todo.id, id));
-
   revalidatePath("/");
 };
 

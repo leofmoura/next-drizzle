@@ -1,16 +1,14 @@
-"use client";
-import { FC, useState } from "react";
+'use client';
+import { useState } from 'react';
 import {
   GetDataType,
   addTodo,
   deleteTodo,
   editTodo,
   toggleTodo,
-} from "@/actions/todo.actions";
-import { TodoWithRemarksType } from "@/db/schema";
-import AddTodo from "./add-todo";
-import Todo from "./todo";
-import { datetime } from "drizzle-orm/mysql-core";
+} from '@/actions/todo.actions';
+import AddTodo from './add-todo';
+import Todo from './todo';
 
 const Todos = ({ todos }: { todos: GetDataType }) => {
   // State to manage the list of todo items
@@ -46,7 +44,8 @@ const Todos = ({ todos }: { todos: GetDataType }) => {
         todo.id === id ? { ...todo, done: !todo.done } : todo
       )
     );
-    toggleTodo(id, true);
+    const todo = todoItems.find((td) => td.id === id);
+    toggleTodo(id, !todo?.done);
   };
 
   // Function to delete a todo item
@@ -57,9 +56,9 @@ const Todos = ({ todos }: { todos: GetDataType }) => {
 
   // Rendering the Todo List component
   return (
-    <main className="flex mx-auto max-w-xl w-full min-h-screen flex-col items-center p-16">
-      <div className="text-5xl font-medium">To-do app</div>
-      <div className="w-full flex flex-col mt-8 gap-2">
+    <main className='flex mx-auto max-w-xl w-full min-h-screen flex-col items-center p-16'>
+      <div className='text-5xl font-medium'>To-do app</div>
+      <div className='w-full flex flex-col mt-8 gap-2'>
         {/* Mapping through todoItems and rendering Todo component for each */}
         {todoItems.map((todo) => (
           <Todo
